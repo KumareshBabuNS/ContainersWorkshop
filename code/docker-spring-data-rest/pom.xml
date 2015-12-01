@@ -55,7 +55,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -73,7 +73,6 @@
 					<!-- copy the service's jar file from target into the root directory of the image -->
 					<resources>
 						<resource>
-							<targetPath>/</targetPath>
 							<directory>${project.build.directory}</directory>
 							<include>${project.build.finalName}.jar</include>
 						</resource>
@@ -83,6 +82,6 @@
 			<!-- end::docker_plugin[] -->
 		</plugins>
 	</build>
-	
+
 
 </project>
