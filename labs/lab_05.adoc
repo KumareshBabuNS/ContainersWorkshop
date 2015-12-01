@@ -17,7 +17,7 @@ $ docker run --name my-redis -d redis redis-server
 . Create an interactive container running a Bash shell using the same Redis image. This will give us a Redis command-line client:
 +
 ----
-$ docker run --rm -it --link my-redis:redis redis /bin/bash
+$ docker run --rm -it --link my-redis:redis redis bash
 ----
 +
 This client uses the `--link` flag to create a Docker link to the `my-redis` container with an alias of `redis`.
