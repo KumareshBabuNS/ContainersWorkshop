@@ -1,23 +1,21 @@
 = Lab 10 - Deploying to Lattice
 
-NOTE: Normally we would run MySQL on Lattice as well, but Pivotal is tracking a bug preventing that: https://github.com/cloudfoundry-incubator/lattice/issues/149.
-
-. Run a MySQL container using Docker regularly:
-+
-----
-$ docker run --name my-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=languages -e MYSQL_USER=languages -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql
-----
-
 . Make sure ltc is targeted:
 +
 ----
-$ ltc target 192.168.11.11.xip.io
+$ ltc target local.lattice.cf
+----
+
+. Run a MySQL container using on Lattice:
++
+----
+$ ltc create mysql mysql -m 512 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=languages -e MYSQL_USER=languages -e MYSQL_PASSWORD=password --tcp-route 3306:3306 --privileged
 ----
 
 . Deploy the Spring Boot app to Lattice:
 +
 ----
-$ ltc create -e SPRING_PROFILES_ACTIVE=docker -e MYSQL_PORT_3306_TCP_ADDR=$(boot2docker ip) -e MYSQL_PORT_3306_TCP_PORT=3306 -e MYSQL_USERNAME=languages -e MYSQL_PASSWORD=password -m 512 web mstine/docker-spring-data-rest
+$ ltc create -e SPRING_PROFILES_ACTIVE=docker -e MYSQL_PORT_3306_TCP_ADDR=local.lattice.cf -e MYSQL_PORT_3306_TCP_PORT=3306 -e MYSQL_USERNAME=languages -e MYSQL_PASSWORD=password -m 512 web mstine/docker-spring-data-rest
 ----
 
-. Hit the application at http://web.192.168.11.11.xip.io/languages.
+. Hit the application at http://web.local.lattice.cf/languages.
