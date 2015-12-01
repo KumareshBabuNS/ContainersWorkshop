@@ -9,7 +9,7 @@ $ ltc target local.lattice.cf
 . Run a MySQL container using on Lattice:
 +
 ----
-$ ltc create mysql mysql -m 512 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=languages -e MYSQL_USER=languages -e MYSQL_PASSWORD=password --tcp-routes 3306:3306 --privileged
+$ ltc create mysql mysql -m 512 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=languages -e MYSQL_USER=languages -e MYSQL_PASSWORD=password --tcp-route 3306:3306 --privileged
 ----
 
 . Deploy the Spring Boot app to Lattice:
