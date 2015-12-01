@@ -2,13 +2,13 @@ footer: © 2015 Matt Stine
 slidenumbers: true
 autoscale: true
 
-![150%](../../Common/images/docker-cluster.png)
-# [fit] Advanced Containers
+![150%](../Common/images/docker-cluster.png)
+# [fit] Docker II
 # _Beyond Containers to Clusters_
 
 ---
 
-![left](../../Common/images/mattmug.jpeg)
+![left](../Common/images/mattmug.jpeg)
 # Me
 
 Matt Stine [@mstine](http://twitter.com/mstine)
@@ -18,12 +18,11 @@ Pivotal
 
 ---
 
-![right fit](../../Common/images/cloud-native-book.jpg)
+![right fit](../Common/images/cloud-native-book.jpg)
 # I wrote a little cloud book...
 
 FREE - Compliments of Pivotal
 
-Available at Pivotal booth or
 [http://bit.ly/cloud-native-book](http://bit.ly/cloud-native-book)
 
 ---
@@ -46,7 +45,7 @@ Available at Pivotal booth or
 
 ---
 
-![40%](../../Common/images/earth.png)
+![40%](../Common/images/earth.png)
 # [fit] YES
 # [fit] We're rebuilding the entire world...
 
@@ -156,21 +155,21 @@ redis:
 ---
 
 # BOSH
-![inline](../../Common/images/bosh-architecture.png)
+![inline](../Common/images/bosh-architecture.png)
 
 http://bosh.io
 
 ---
 
 # Mesos
-![inline](../../Common/images/mesos_1.jpg)
+![inline](../Common/images/mesos_1.jpg)
 
 http://mesos.apache.org/
 
 ---
 
 # Mesos Resource Offer
-![inline](../../Common/images/mesos_2.jpg)
+![inline](../Common/images/mesos_2.jpg)
 
 ---
 
@@ -197,7 +196,7 @@ https://docs.docker.com/swarm/
 
 # [fit] Kubernetes
 
-![inline](../../Common/images/kubernetes.png)
+![inline](../Common/images/kubernetes.png)
 
 http://kubernetes.io/
 
@@ -210,7 +209,7 @@ http://kubernetes.io/
 
 ---
 
-![original fit](../../Common/images/kubernetes_arch.png)
+![original fit](../Common/images/kubernetes_arch.png)
 
 ---
 
@@ -280,8 +279,8 @@ https://mesosphere.github.io/marathon/
 
 ---
 
-![inline fit](../../Common/images/maraton_arch_1.png)
-![inline fit](../../Common/images/marathon_arch_2.png)![inline fit](../../Common/images/marathon_arch_3.png)
+![inline fit](../Common/images/maraton_arch_1.png)
+![inline fit](../Common/images/marathon_arch_2.png)![inline fit](../Common/images/marathon_arch_3.png)
 
 ---
 
@@ -315,7 +314,7 @@ https://mesosphere.github.io/marathon/
 
 ---
 
-![original fit](../../Common/images/diego-overview.png)
+![original fit](../Common/images/diego-overview.png)
 
 ---
 
@@ -332,7 +331,7 @@ https://mesosphere.github.io/marathon/
 ---
 
 # Lattice
-![inline](../../Common/images/lattice.png)
+![inline](../Common/images/lattice.png)
 
 https://lattice.cf
 
@@ -349,14 +348,14 @@ https://lattice.cf
 
 # Weave
 
-![inline fit](../../Common/images/weave_arch.png)
+![inline fit](../Common/images/weave_arch.png)
 
 http://zettio.github.io/weave/
 
 ---
 
 # Docker Networking
-![inline fit](../images/cnm-model.jpg)
+![inline fit](../Common/images/cnm-model.jpg)
 
 https://blog.docker.com/2015/06/networking-receives-an-upgrade/
 
