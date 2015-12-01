@@ -54,7 +54,6 @@ NOTE: If you get a ``Permission denied'' error, your `/usr/local/bin directory` 
 * Pre-Requisites for the Vagrant VM (Mac OS X and Windows users: if you installed Docker first, you will not need to install Virtualbox, as Docker Toolbox took care of that.)
 * Starting the Lattice Vagrant VM
 * ltc - the Lattice CLI
-** If you are running on Windows, `vagrant ssh` into your Lattice VM and use `ltc` from there.
 
 == Warm Your Docker Cache
 
