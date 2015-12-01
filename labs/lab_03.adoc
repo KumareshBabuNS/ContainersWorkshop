@@ -7,7 +7,7 @@ NOTE: An official Redis image exists, and we'll use it later. However, the image
 . At a Docker-enabled terminal, run a new interactive container based on the `debian` image:
 +
 ----
-$ docker run -it debian /bin/bash
+$ docker run -it debian bin/bash
 ----
 
 . At the container shell, update the system package listing:
@@ -61,15 +61,16 @@ exit
 $ docker run -d -p 6379:6379 <your docker hub username>/redis /usr/bin/redis-server
 ----
 
-. From a separate terminal window, identify your boot2docker IP address and telnet to the Redis server instance:
+. From a separate terminal window, identify your Boot2Docker IP address and telnet to the Redis server instance:
 +
 ----
-$ boot2docker ip
-192.168.59.103
+$ docker-machine ls
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
+default   *        virtualbox   Running   tcp://192.168.99.100:2376
 
-$ telnet 192.168.59.103 6379
-Trying 192.168.59.103...
-Connected to 192.168.59.103.
+$ telnet 192.168.99.100 6379
+Trying 192.168.99.100...
+Connected to 192.168.99.100.
 Escape character is '^]'.
 set hello nfjs
 +OK
@@ -77,3 +78,5 @@ get hello
 $4
 nfjs
 ----
++
+NOTE: Windows users may need to install Telnet. Follow the instructions here: https://technet.microsoft.com/en-us/library/cc771275(v=ws.10).aspx
