@@ -5,7 +5,7 @@ Student Guide
 == Instructor Details
 
 Matt Stine (https://twitter.com/mstine[@mstine]) +
-Principal Engineer / Senior Project Manager - Pivotal +
+Consulting Engineer / Senior Project Manager - Pivotal +
 mstine@pivotal.io
 
 == Schedule
