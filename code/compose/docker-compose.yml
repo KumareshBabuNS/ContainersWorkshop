@@ -1,0 +1,17 @@
+mysql: # <1>
+  image: mysql # <2>
+  environment:
+    MYSQL_ROOT_PASSWORD: my-secret-pw # <3>
+    MYSQL_DATABASE: languages # <4>
+    MYSQL_USER: languages
+    MYSQL_PASSWORD: password
+web: # <5>
+  image: docker-spring-boot # <6>
+  ports:
+    - "8080:8080" # <7>
+  links:
+    - mysql # <8>
+  environment:
+    SPRING_PROFILES_ACTIVE: docker # <9>
+    MYSQL_USERNAME: languages
+    MYSQL_PASSWORD: password
