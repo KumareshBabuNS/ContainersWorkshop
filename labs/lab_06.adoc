@@ -1,3 +1,4 @@
+:compat-mode:
 = Lab 6 - Working with Docker Volumes
 
 In this lab we'll experiment with Docker Volumes.
@@ -12,18 +13,17 @@ They are designed for the persistence of data independent of the lifecycle of an
 $ docker run --name my_volume -it -v /data debian
 ----
 +
+NOTE: On Windows, if you run into complaints from Docker about ``invalid characters for a local volume name,'' try substituting `//data` for `/data`.
++
 This will open an interactive Bash shell inside the new container.
 
 . In a separate terminal window, inspect the container to view its volume information:
 +
 ----
-$ docker inspect -f "{{.Volumes}}" my_volume map[/data:/mnt/sda1/var/lib/docker/volumes/db4935f761833e0ee72d637edc40f9eb6e5989099e70d48821e738090c220928/_data]
-
-$ docker inspect -f "{{.VolumesRW}}" my_volume
-map[/data:true]
+$ docker inspect -f '{{json .Mounts}}' my_volume [{"Name":"9949767fbc42b370aa925661be1efc06785354bdb73d7352c5006b3d303fab5f","Source":"/mnt/sda1/var/lib/docker/volumes/9949767fbc42b370aa925661be1efc06785354bdb73d7352c5006b3d303fab5f/_data","Destination":"/data","Driver":"local","Mode":"","RW":true}]
 ----
 +
-The first command shows the location of the `/data` volume inside of your boot2docker VM. The second command shows that the read/write bit is set to true on the `/data` volume.
+This command gives you various details about the volume you created, including its location inside of your Boot2Docker VM and that its read/write bit is set to true.
 
 . In the container terminal window, add some data to `/data`:
 +
@@ -82,6 +82,8 @@ $ echo bar >> foo
 ----
 $ docker run --name mount_host_dir -it -v $(pwd):/data debian
 ----
++
+NOTE: Windows Users: The `$(pwd)` syntax will probably not work for you. Instead, run `pwd` separately at the prompt. Take the value and ``double up'' all of the slashes. Here's an example: `docker run --name mount_host_dir -it -v //c//Users//vagrant//docker_data://data debian`
 
 . Verify that the data you created earlier is still available:
 +
@@ -126,6 +128,8 @@ $ cd $WORKSHOP_HOME/ContainersWorkshop/code/mysql-scripts
 ----
 $ docker run -it --link my-mysql:mysql -v $(pwd):/scripts --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD" < /scripts/foo.sql'
 ----
++
+NOTE: Windows Users: Continue to apply the ``double slash'' technique as required.
 +
 This command mounts the current directory as `/scripts` and then executes the `mysql` client command, passing it connection information obtained from Docker link environment variables, as well as the `foo.sql` script.
 

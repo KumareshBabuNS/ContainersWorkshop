@@ -706,6 +706,18 @@ They are designed for the persistence of data independent of the lifecycle of an
 <pre>$ docker run --name my_volume -it -v /data debian</pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+On Windows, if you run into complaints from Docker about &#8220;invalid characters for a local volume name,&#8221; try substituting <code>//data</code> for <code>/data</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>This will open an interactive Bash shell inside the new container.</p>
 </div>
@@ -714,14 +726,11 @@ They are designed for the persistence of data independent of the lifecycle of an
 <p>In a separate terminal window, inspect the container to view its volume information:</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ docker inspect -f "{{.Volumes}}" my_volume map[/data:/mnt/sda1/var/lib/docker/volumes/db4935f761833e0ee72d637edc40f9eb6e5989099e70d48821e738090c220928/_data]
-
-$ docker inspect -f "{{.VolumesRW}}" my_volume
-map[/data:true]</pre>
+<pre>$ docker inspect -f '{{json .Mounts}}' my_volume [{"Name":"9949767fbc42b370aa925661be1efc06785354bdb73d7352c5006b3d303fab5f","Source":"/mnt/sda1/var/lib/docker/volumes/9949767fbc42b370aa925661be1efc06785354bdb73d7352c5006b3d303fab5f/_data","Destination":"/data","Driver":"local","Mode":"","RW":true}]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first command shows the location of the <code>/data</code> volume inside of your boot2docker VM. The second command shows that the read/write bit is set to true on the <code>/data</code> volume.</p>
+<p>This command gives you various details about the volume you created, including its location inside of your Boot2Docker VM and that its read/write bit is set to true.</p>
 </div>
 </li>
 <li>
@@ -790,7 +799,7 @@ exit</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Within your ``home'' directory, create a new directory called 'docker_data', and change to the directory:</p>
+<p>Within your &#8220;home&#8221; directory, create a new directory called <em>docker_data</em>, and change to the directory:</p>
 <div class="listingblock">
 <div class="content">
 <pre>$ mkdir docker_data &amp;&amp; cd docker_data</pre>
@@ -811,6 +820,18 @@ exit</pre>
 <div class="content">
 <pre>$ docker run --name mount_host_dir -it -v $(pwd):/data debian</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Windows Users: The <code>$(pwd)</code> syntax will probably not work for you. Instead, run <code>pwd</code> separately at the prompt. Take the value and &#8220;double up&#8221; all of the slashes. Here&#8217;s an example: <code>docker run --name mount_host_dir -it -v //c//Users//vagrant//docker_data://data debian</code>
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -876,6 +897,18 @@ exit</pre>
 <div class="content">
 <pre>$ docker run -it --link my-mysql:mysql -v $(pwd):/scripts --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD" &lt; /scripts/foo.sql'</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Windows Users: Continue to apply the &#8220;double slash&#8221; technique as required.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>This command mounts the current directory as <code>/scripts</code> and then executes the <code>mysql</code> client command, passing it connection information obtained from Docker link environment variables, as well as the <code>foo.sql</code> script.</p>
@@ -982,7 +1015,7 @@ Bye</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-11-30 19:47:56 EST
+Last updated 2015-12-01 01:24:07 EST
 </div>
 </div>
 </body>
