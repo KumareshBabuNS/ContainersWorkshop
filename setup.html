@@ -734,27 +734,34 @@ b.conum * { color: inherit !important; }
 <li>
 <p><a href="http://docs.docker.com/linux/step_one/">Linux</a></p>
 <div class="paragraph">
-<p>You only need to complete the instructions on the page titled <em>Install Docker for&#8230;&#8203;</em></p>
+<p>You only need to complete the instructions on the page titled <em>Install Docker for&#8230;&#8203;</em> For Mac OS X and Windows users, these instructions will take you through the installation of the Docker Toolbox, which provides everything you need to run Docker containers in a Boot2Docker Linux VM. For Linux users, you can run Docker containers natively, so these instructions will simply take you through the installation of the Docker daemon and CLI tool.</p>
 </div>
 <div class="paragraph">
-<p>If you want to use your own terminal configuration (i.e. not the one provided by boot2docker), you need to set three environment variables in your shell. They are provided to you at the end of the boot2docker installation. Here is an example of what you&#8217;re looking for:</p>
+<p>If you want to use your own terminal configuration (i.e. not the one provided by Docker Toolbox), you need to set three environment variables in your shell. You can view them using the <code>docker-machine</code> tool:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ export DOCKER_HOST=tcp://192.168.59.104:2376
-$ export DOCKER_CERT_PATH=/Users/pivotal/.boot2docker/certs/boot2docker-vm
-$ export DOCKER_TLS_VERIFY=1</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ docker-machine env default
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/pivotal/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell:
+# eval "$(docker-machine env default)"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>At this point, Mac OS X and Windows users are done with the Docker setup. You can proceed to <a href="#step-3">Step 3</a>.</p>
 </div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Install <strong>Docker Compose</strong> for OS X or Linux by running the following commands from the terminal:</p>
+<p>Install <strong>Docker Compose</strong> for Linux by running the following commands from the terminal:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ curl -L https://github.com/docker/compose/releases/download/1.3.3/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose
 
 $ chmod +x /usr/local/bin/docker-compose</code></pre>
 </div>
@@ -771,34 +778,21 @@ If you get a &#8220;Permission denied&#8221; error, your <code>/usr/local/bin di
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Docker Compose is not yet supported natively on Windows. To run on Windows, you can follow the instructions found <a href="https://github.com/dduportal-dockerfiles/docker-compose#how-do-you-use-this-image-">here</a>. They demonstrate how to run Docker Compose inside a container using your boot2docker machine.</p>
-</div>
 </li>
 <li>
-<p>Install <strong>Lattice</strong> by following the instructions found <a href="http://lattice.cf/docs/getting-started/">here</a>. You will need to complete the following sections of the <em>Getting Started</em> page:</p>
+<p><a id="step-3"></a>Install <strong>Lattice</strong> by following the instructions found <a href="http://lattice.cf/docs/getting-started/">here</a>. You will need to complete the following sections of the <em>Getting Started</em> page:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pre-Requisites for the Vagrant VM (if you installed Docker first, you should be OK here)</p>
+<p>Pre-Requisites for the Vagrant VM (Mac OS X and Windows users: if you installed Docker first, you will not need to install Virtualbox, as Docker Toolbox took care of that.)</p>
 </li>
 <li>
 <p>Starting the Lattice Vagrant VM</p>
+</li>
+<li>
+<p>ltc - the Lattice CLI</p>
 <div class="ulist">
 <ul>
-<li>
-<p>In this section, replace <code>git checkout master</code> with <code>git checkout v0.2.6</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Fetching ltc - the Lattice CLI</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure you download ltc v0.2.6 from <a href="https://github.com/cloudfoundry-incubator/lattice/releases/tag/v0.2.6" class="bare">https://github.com/cloudfoundry-incubator/lattice/releases/tag/v0.2.6</a></p>
-</li>
 <li>
 <p>If you are running on Windows, <code>vagrant ssh</code> into your Lattice VM and use <code>ltc</code> from there.</p>
 </li>
@@ -816,7 +810,7 @@ If you get a &#8220;Permission denied&#8221; error, your <code>/usr/local/bin di
 <h2 id="_warm_your_docker_cache">Warm Your Docker Cache</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Using a Docker-enabled terminal (either by double-clicking on the boot2docker icon or your own terminal setup as described above), execute the following command:</p>
+<p>Using a Docker-enabled terminal (either by double-clicking on the Docker Quickstart Terminal icon or your own terminal setup as described above), execute the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -835,16 +829,17 @@ If you get a &#8220;Permission denied&#8221; error, your <code>/usr/local/bin di
 </div>
 </div>
 <div class="paragraph">
-<p>To access the application, identify the port for your boot2docker VM:</p>
+<p>To access the application, identify the port for your Boot2Docker VM (if you are a Linux user, this is <code>localhost</code>!):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ boot2docker ip
-192.168.59.104</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ docker-machine ls
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
+default   -        virtualbox   Running   tcp://192.168.99.100:2376</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And then access the application using that IP in the browser. For the IP above, you would access <a href="http://192.168.59.104:8080" class="bare">http://192.168.59.104:8080</a>.</p>
+<p>And then access the application using that IP in the browser. For the IP above, you would access <a href="http://192.168.99.100:8080" class="bare">http://192.168.99.100:8080</a>.</p>
 </div>
 </div>
 </div>
@@ -870,7 +865,7 @@ $ docker run redis echo hello world</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-07-21 08:54:42 MDT
+Last updated 2015-11-30 22:10:28 EST
 </div>
 </div>
 </body>
