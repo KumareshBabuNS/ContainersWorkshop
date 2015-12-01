@@ -1,3 +1,4 @@
+:compat-mode:
 = Lab 1 - Hello Docker!
 
 In this lab we'll explore the basics of the Docker pull/run workflow.
@@ -6,7 +7,7 @@ NOTE: If you've pre-warmed your cache per link:../setup.html[the setup docs], yo
 
 == Find Busybox in Docker Hub
 
-. Visit https://registry.hub.docker.com/search?q=library[Docker Hub]. In the search bar, enter ``busybox'' and click the search icon:
+. Visit https://registry.hub.docker.com/search?q=library[Docker Hub]. In the search bar, enter ``busybox'' and hit *Enter*:
 +
 image:../images/search_busybox.png[]
 
@@ -21,7 +22,6 @@ image:../images/busybox_detail.png[]
 For example:
 +
 * You can see how https://docs.docker.com/docker-hub/official_repos/[official repos] are designated.
-* You can see how many times a particular image has been pulled (in this screenshot, 26472784 times!).
 * You can view the currently supported _tags_ and the _Dockefiles_ from which they've been created (more on these later!).
 * If you continue to scroll down, you'll learn interesting information about how to use this image.
 +
